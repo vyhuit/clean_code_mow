@@ -214,13 +214,13 @@ function renderProducts(productList){
 ```javascript
 let totalWearingProductPrice = 0;
 for (let index = 0; index < wearingProductList.length; index++) {
-  const wearingProduct = wearingProductList[index];
+  let wearingProduct = wearingProductList[index];
   totalWearingProductPrice += wearingProduct.price;
 };
 
 let totalFoodProductPrice = 0;
 for (let index = 0; index < foodProductList.length; index++) {
-  const foodProduct = foodProductList[index];
+  let foodProduct = foodProductList[index];
   totalFoodProductPrice += foodProduct.price;
 };
 ```
@@ -230,7 +230,7 @@ for (let index = 0; index < foodProductList.length; index++) {
 function calculateProductPrice (products) => {
   let total = 0;
   for (let index = 0; index < products.length; index++) {
-    const product = products[index];
+    let product = products[index];
     total += product.price;
   };
   return total;
@@ -239,5 +239,30 @@ function calculateProductPrice (products) => {
 let totalWearingProductPrice = calculateProductsPrice(wearingProductList);
 let totalFoodProductPrice = calculateProductsPrice(foodProductList);
 
+```
+
+### 4. Coding tricks:
+##### 4.1. Enum:
+* If you have to compare 2 values, let use a enum:
+###### ❌ Don't: 
+```javascript
+if(orderStatusCode === 123){
+  //do something
+}
+```
+
+###### ✅ It should be:
+```javascript
+const ORDER_STATUS_CODE={
+  "NEW": 1,
+  "DELIVERY": 2,
+  "SHIPPING": 3,
+  "COMPLETE": 10,
+  ...
+};
+
+if (oderStatusCode === ORDER_STATUS_CODE.SHIPPING) {
+  //do something
+}
 ```
 
